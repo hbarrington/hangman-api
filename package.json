@@ -1,0 +1,29 @@
+{
+  "name": "hangman-api",
+  "version": "1.0.0",
+  "description": "An API on Express for the game Hangman",
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.14.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/hbarrington/hangman-api.git"
+  },
+  "keywords": [
+    "hangman",
+    "game",
+    "api",
+    "express"
+  ],
+  "author": "Hunter Barrington",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hbarrington/hangman-api/issues"
+  },
+  "homepage": "https://github.com/hbarrington/hangman-api#readme"
+}
