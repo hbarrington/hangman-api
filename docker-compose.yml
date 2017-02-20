@@ -1,0 +1,29 @@
+# ./docker-compose.yml
+version: '2'
+services:
+  api:
+    build: .
+    volumes:
+      - .:/home/app
+    environment:
+      PORT: 8080
+    ports:
+      - "8081:8080"
+    depends_on:
+      - mongodb
+    # volumes_from:
+    #   - bundle
+  # bundle:
+  #     image: busybox
+  #     volumes:
+  #       - /bundle
+  mongodb:
+      image: mongo
+      ports:
+        - "27017:27017"
+  #     volumes_from:
+  #       - db_data
+  # db_data:
+  #     image: busybox
+  #     volumes:
+  #       - /var/lib/postgresql/data
