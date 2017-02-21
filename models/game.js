@@ -30,4 +30,15 @@ var GameSchema = new Schema({
   }
 });
 
+GameSchema.methods.update_partial_word = function(character){
+  if (this.partial_word === undefined){
+    this.partial_word = '_'.repeat(this.word.length)
+  }
+  var start = 0;
+  while (this.word.indexOf(character, start) > -1){
+    start = this.word.indexOf(character, start)+1 // we want it to check just after the character
+    this.partial_word = this.partial_word.substr(0, start-1) + character + this.partial_word.substr(start)
+  }
+}
+
 module.exports = mongoose.model('Games', GameSchema);

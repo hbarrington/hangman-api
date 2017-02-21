@@ -47,14 +47,15 @@ exports.update_a_game = function(req, res) {
     if (err)
       res.send(err);
 
-    // update partial word
+    // update partial word or wrong_guesses - TODO refactor into model
     if (game.word.indexOf(guess) > -1){
-      console.log("hit")
+      game.update_partial_word(guess)
     } else {
-      game.wrong_guesses.push(guess)
+      if (game.wrong_guesses.indexOf(guess) === -1)
+        game.wrong_guesses.push(guess)
     }
 
-    // check for game over - loss
+    // check for game over - loss - TODO refactor into model
     if (game.wrong_guesses.length > game.number_of_guesses)
       game.status = "lost"
 
@@ -62,10 +63,7 @@ exports.update_a_game = function(req, res) {
     if (game.partial_word === game.word)
       game.status = "won"
 
-    console.log(game)
-    Game.findOneAndUpdate(req.params.gameId, game, {new: true}, function(err, game) {
-      console.log(req.params)
-      console.log(game)
+    Game.findOneAndUpdate({'_id': req.params.gameId}, game, {new: true}, function(err, game) {
       if (err)
         res.send(err);
       res.json(game);
