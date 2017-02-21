@@ -5,12 +5,12 @@ var Schema = mongoose.Schema;
 var GameSchema = new Schema({
   word: {
     type: String,
-    Required: 'the word or phrase to be guessed is required'
+    required: true
   },
   wrong_guesses: {
     type: [],
   },
-  word_status: {
+  partial_word: {
     type: String
   },
   number_of_guesses: {
@@ -24,7 +24,7 @@ var GameSchema = new Schema({
   status: {
     type: [{
       type: String,
-      enum: ['pending', 'ongoing', 'completed']
+      enum: ['pending', 'ongoing', 'lost', 'won']
     }],
     default: ['pending']
   }
