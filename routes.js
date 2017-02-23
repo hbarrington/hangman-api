@@ -12,4 +12,8 @@ module.exports = function(app) {
     .put(gameController.update_a_game)
     .delete(gameController.delete_a_game);
 
+  app.get('/', (req, res) => {
+    res.sendFile(__dirname + '/views/index.html');
+  });
+
 };

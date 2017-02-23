@@ -20,6 +20,7 @@ The primary goal is exploration and refreshing myself on technologies I haven't 
 * *adding multiple API servers and a load balancer is trivial (as you'd expect in a containerized environment)*
 * ECS requires a decent amount of usage of other AWS services (EC2 obviously, ELB's probably, IAM roles, S3/storage, etc.). No big surprises but will always be a negative comparing with open source/non-proprietary tooling.
 * Task placement strategy is *very* cool. With options like AZ Balanced Spread and the ability to edit the criteria used in the strategy, there is some very nice scalability OOTB.
+* Right now static content (react) is hosted on the ECS containers and served by express. A CDN should be used instead and source content should be S3 or a lightweight nginx box. 
 
 ## Results
 * Getting things pushed to ECS' Container Repository was easy - one extra step in my normal workflow that could easily be scripted.

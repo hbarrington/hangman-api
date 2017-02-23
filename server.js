@@ -19,6 +19,7 @@ mongoose.connect('mongodb://mongodb/hangman');
 // set API configs
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(express.static('static'));
 
 // Routes!
 var routes = require('./routes');
