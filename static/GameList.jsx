@@ -26,10 +26,8 @@ class GameForm extends React.Component {
   }
 
   handleSubmit(event) {
-    console.log(this.state)
     const it = this;
     $.post('http://localhost:8080/games/', this.state, function(response) {
-      //this.setState({ games: data });
       it.props.onSuccess(response);
     }, 'json');
     event.preventDefault();
@@ -80,13 +78,26 @@ class GameList extends React.Component {
           created_date={data.created_date}
           partial_word={data.partial_word}
           wrong_guesses={data.wrong_guesses}
+          onSuccess={(updated_game) => this.updateCurrentGame(updated_game)}
           />
         this.setState({ current_game: game})
       });
   }
 
+  updateCurrentGame(data){
+    let game = <Game
+      _id={data._id}
+      status={data.status}
+      number_of_guesses={data.number_of_guesses}
+      created_date={data.created_date}
+      partial_word={data.partial_word}
+      wrong_guesses={data.wrong_guesses}
+      onSuccess={(updated_game) => this.updateCurrentGame(updated_game)}
+      />
+    this.setState({current_game: game});
+  }
+
   updateGamesList(new_game){
-    console.log(this.state);
     let games = this.state.games.slice();
     games.push(new_game);
     this.setState({ games: games })
