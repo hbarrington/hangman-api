@@ -14,17 +14,28 @@ The primary goal is exploration and refreshing myself on technologies I haven't 
 * Play with React.js - I've used Ember a little and managed a *lot* of Ember projects. I like it a lot and wanted to compare with React (and eventually Angular). This seemed like a good project to try it on.
 * Have an API/UI to play hangman on.
 
+## How to Run
+To just run the API:
+`docker-compose up`
+
+To interact with the UI:
+`docker-compose run -p 8080:8080 api /bin/bash`
+Inside the terminal you'll need to compile the react application.
+`node_modules/webpack/bin/webpack.js`
+`node server.js`
+
+## Results
+* Getting things pushed to ECS' Container Repository was easy - one extra step in my normal workflow that could easily be scripted.
+* Configuring ECS was non-trivial but there was a lot of flexibility in load balancing and scale-out.
+
 ## Notes
 * ECS requires lots of attributes for task definitions (their description of kubernetes' controllers) - a little bit of research gives a lot of power though
 * versioning (revisions) comes out of the box and the UI to create a new version is very easy. I think this is a place where they beat k8s
 * *adding multiple API servers and a load balancer is trivial (as you'd expect in a containerized environment)*
 * ECS requires a decent amount of usage of other AWS services (EC2 obviously, ELB's probably, IAM roles, S3/storage, etc.). No big surprises but will always be a negative comparing with open source/non-proprietary tooling.
 * Task placement strategy is *very* cool. With options like AZ Balanced Spread and the ability to edit the criteria used in the strategy, there is some very nice scalability OOTB.
-* Right now static content (react) is hosted on the ECS containers and served by express. A CDN should be used instead and source content should be S3 or a lightweight nginx box. 
-
-## Results
-* Getting things pushed to ECS' Container Repository was easy - one extra step in my normal workflow that could easily be scripted.
-*
+* Right now static content (react) is hosted on the ECS containers and served by express. A CDN should be used instead and source content should be S3 or a lightweight nginx box.
+* DNS resolution within an ECS cloud isn't overtly clear (TODO? - https://aws.amazon.com/blogs/compute/service-discovery-for-amazon-ecs-using-dns/)
 
 ### Scalability
 If one wanted to have 10,000's of games of hangman operating concurrently (who doesn't?) containerized ECS could get you there quickly. *Testing info goes here*
