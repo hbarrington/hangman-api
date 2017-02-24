@@ -20,5 +20,5 @@ class Game extends React.Component {
 
 export default Game;
 
-import ReactDOM from 'react-dom';
-ReactDOM.render(<Game _id='123456789' number_of_guesses='6' created_date='1-2-16'/>, document.getElementById('games'));
+// import ReactDOM from 'react-dom';
+// ReactDOM.render(<Game _id='123456789' number_of_guesses='6' created_date='1-2-16'/>, document.getElementById('games'));
