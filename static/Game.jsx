@@ -28,17 +28,34 @@ class GuessForm extends React.Component {
   }
 
   render() {
-    return (
-      <form onSubmit={this.handleSubmit}>
-        <label>
-          Guess:
-          <input type="text" name='guess' value={this.state.guess} onChange={this.handleChange} />
-        </label>
-        <input type="submit" value="Submit" />
-      </form>
-    );
+    if (this.props.status != 'won' && this.props.status != 'lost'){
+      return (
+        <form onSubmit={this.handleSubmit}>
+          <label>
+            Guess:
+            <input type="text" name='guess' value={this.state.guess} onChange={this.handleChange} />
+          </label>
+          <input type="submit" value="Submit" />
+        </form>
+      );
+    } else {
+      return (<span></span>);
+    }
   }
 }
+
+
+function Status(props){
+  if (props.status == 'lost' ){
+    return <span>Sorry! You lost!</span>
+  } else if( props.status == 'won' ) {
+    return <span>Congratulations! You won!</span>
+  } else {
+    return <span>{props.guesses_left + "/" + props.number_of_guesses + " guesses left"}</span>
+  }
+}
+
+
 
 class Game extends React.Component {
 
@@ -48,18 +65,16 @@ class Game extends React.Component {
         <h4 className="game-header">
           {"Game " + this.props._id + " created on " + this.props.created_date}
         </h4>
-        <h4 className="number-of-guesses">
-          {"Number of Guesses " + this.props.number_of_guesses}
+        <h4 className="status">
+          <Status status={this.props.status} guesses_left={this.props.guesses_left} number_of_guesses={this.props.number_of_guesses} />
         </h4>
         <h4 className="partial-word">
-          {this.props.partial_word}
+          Word: {this.props.partial_word}
         </h4>
         <h4 className="wrong-guesses">
-          {this.props.wrong_guesses}
+          Incorrect Guesses: {this.props.wrong_guesses}
         </h4>
-        <h4 className="guess">
-          <GuessForm _id={this.props._id} onSuccess={(updated_game) => this.props.onSuccess(updated_game)}/>
-        </h4>
+        <GuessForm status={this.props.status} _id={this.props._id} onSuccess={(updated_game) => this.props.onSuccess(updated_game)}/>
       </div>
     );
   }

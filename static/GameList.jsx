@@ -71,16 +71,7 @@ class GameList extends React.Component {
   getGame(id){
     return $.getJSON('http://localhost:8080/games/'+id)
       .then((data) => {
-        let game = <Game
-          _id={data._id}
-          status={data.status}
-          number_of_guesses={data.number_of_guesses}
-          created_date={data.created_date}
-          partial_word={data.partial_word}
-          wrong_guesses={data.wrong_guesses}
-          onSuccess={(updated_game) => this.updateCurrentGame(updated_game)}
-          />
-        this.setState({ current_game: game})
+        this.updateCurrentGame(data);
       });
   }
 
@@ -92,6 +83,7 @@ class GameList extends React.Component {
       created_date={data.created_date}
       partial_word={data.partial_word}
       wrong_guesses={data.wrong_guesses}
+      guesses_left={data.number_of_guesses - data.wrong_guesses.length}
       onSuccess={(updated_game) => this.updateCurrentGame(updated_game)}
       />
     this.setState({current_game: game});
