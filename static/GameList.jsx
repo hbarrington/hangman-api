@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Game from './Game.jsx';
 var $ = require("jquery");
+const host = location.origin
 
 function GameListing(props) {
   return (
@@ -27,7 +28,7 @@ class GameForm extends React.Component {
 
   handleSubmit(event) {
     const it = this;
-    $.post('http://localhost:8080/games/', this.state, function(response) {
+    $.post(host+'/games/', this.state, function(response) {
       it.props.onSuccess(response);
     }, 'json');
     event.preventDefault();
@@ -62,14 +63,14 @@ class GameList extends React.Component {
   }
 
   getGames(){
-    return $.getJSON('http://localhost:8080/games/')
+    return $.getJSON(host+'/games/')
       .then((data) => {
         this.setState({ games: data });
       });
   }
 
   getGame(id){
-    return $.getJSON('http://localhost:8080/games/'+id)
+    return $.getJSON(host+'/games/'+id)
       .then((data) => {
         this.updateCurrentGame(data);
       });

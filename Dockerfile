@@ -12,6 +12,9 @@ RUN npm install
 # Bundle app source
 COPY . .
 
+# TODO - do this better
+RUN ./node_modules/webpack/bin/webpack.js
+
 EXPOSE 8080
 
 CMD [ "npm", "start" ]

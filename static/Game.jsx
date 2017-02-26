@@ -1,5 +1,6 @@
 import React from 'react';
 var $ = require("jquery");
+const host = location.origin
 
 class GuessForm extends React.Component {
   constructor(props) {
@@ -17,7 +18,7 @@ class GuessForm extends React.Component {
   handleSubmit(event) {
     const it = this;
     $.ajax({
-      url: 'http://localhost:8080/games/'+it.props._id,
+      url: host+'/games/'+it.props._id,
       method: 'PUT',
       data: it.state,
       dataType: 'json'

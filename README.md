@@ -47,6 +47,8 @@ The primary goal is exploration and refreshing myself on technologies I haven't 
 * Refactor AJAX calls to not use jQuery and to be a easier to refactor per http://andrewhfarmer.com/react-ajax-best-practices/
 * Right now static content (react) is hosted on the ECS containers and served by express. A CDN should be used instead and source content should be S3 or a lightweight nginx box.
 * Implement a simple version of service discover - https://aws.amazon.com/blogs/compute/service-discovery-for-amazon-ecs-using-dns/)
+  * Current implementation uses an internal classic ELB to give a DNS name that can then be passed to the docker image
+* Provide a word length so users know how many letters are in the word or phrase
 
 
 ### Scalability
