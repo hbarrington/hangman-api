@@ -7,7 +7,7 @@ API specs available - https://documenter.getpostman.com/view/1162408/hangman-api
 
 UI built in React as a sample client.
 
-Available for testing at http://52.36.17.22/
+Available for testing at http://52.41.93.115/
 
 ## How to Run
 To just run the API:

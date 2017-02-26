@@ -2,7 +2,7 @@
 
 // App and Constants
 const port = process.env.PORT || 8080
-const mongo_host = process.env.MONGO_HOST || 'mongodb'
+const mongo_host = process.env.MONGO_HOST || '52.41.93.115'
 const express = require('express')
 const app = express()
 
@@ -15,7 +15,7 @@ var Game = require('./models/game'),
 
 // Mongo settings
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://'+ mongo_host + '/hangman');
+mongoose.connect('mongodb://'+mongo_host+'/hangman');
 
 // set API configs
 app.use(bodyParser.urlencoded({ extended: true }));
