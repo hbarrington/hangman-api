@@ -33,20 +33,20 @@ The primary goal is exploration and refreshing myself on technologies I haven't 
 
 ## Results
 * Getting things pushed to ECS' Container Repository was easy - one extra step in my normal workflow that could easily be scripted.
-* Configuring ECS was non-trivial but there was a lot of flexibility in load balancing and scale-out.
+* Configuring ECS was non-trivial but there was a lot of flexibility and power both in load balancing and scale-out.
+  * Service Discovery within an ECS cloud isn't available OOTB. This is a big one if you're trying to host microservices. They suggest using a dedicated service ([Weave](https://www.weave.works/guides/service-discovery-and-load-balancing-with-weave-on-amazon-ecs-2/), etc.) or rolling your own using Route53 and a [go script](https://github.com/awslabs/service-discovery-ecs-dns). This is in sharp contrast to K8s who has this OOTB and it's easy to use.
 
 ## Notes
 * ECS requires lots of attributes for task definitions (their version of kubernetes' controllers) - a little bit of research gives a lot of power though
-* versioning (revisions) comes out of the box and the UI to create a new version is very accessible. I think this is a place where they beat k8s
-* *adding multiple API servers and a load balancer is trivial (as you'd expect/want in a containerized environment)*
+* Versioning (revisions) comes out of the box and the UI to create a new version is very accessible. I think this is a place where they beat K8s.
+* *Adding multiple API servers and a load balancer is trivial (as you'd expect/want in a containerized environment)*
 * ECS requires a decent amount of usage of other AWS services (EC2 obviously, ELB's in many cases, IAM roles, S3/storage, Route53 for service discovery probably etc.). No big surprise but will always be a negative when trying to avoid vendor lock-in.
 * Task placement strategy is *very* cool. With options like AZ Balanced Spread and the ability to edit the criteria used in the strategy, there is some very nice scalability OOTB.
-* DNS resolution/service discovery within an ECS cloud isn't overtly clear
 
 ### Todos
-* refactor AJAX calls to not use jQuery and to be a easier to refactor per http://andrewhfarmer.com/react-ajax-best-practices/
+* Refactor AJAX calls to not use jQuery and to be a easier to refactor per http://andrewhfarmer.com/react-ajax-best-practices/
 * Right now static content (react) is hosted on the ECS containers and served by express. A CDN should be used instead and source content should be S3 or a lightweight nginx box.
-*  implement a simple version of service discover - https://aws.amazon.com/blogs/compute/service-discovery-for-amazon-ecs-using-dns/)
+* Implement a simple version of service discover - https://aws.amazon.com/blogs/compute/service-discovery-for-amazon-ecs-using-dns/)
 
 
 ### Scalability
