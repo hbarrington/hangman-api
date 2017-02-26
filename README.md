@@ -7,7 +7,7 @@ API specs available - https://documenter.getpostman.com/view/1162408/hangman-api
 
 UI built in React as a sample client.
 
-Available for testing at http://52.41.93.115/
+Available for testing at http://hangman-api.com/
 
 ## How to Run
 To just run the API:
@@ -34,7 +34,7 @@ The primary goal is exploration and refreshing myself on technologies I haven't 
 ## Results
 * Getting things pushed to ECS' Container Repository was easy - one extra step in my normal workflow that could easily be scripted.
 * Configuring ECS was non-trivial but there was a lot of flexibility and power both in load balancing and scale-out.
-  * Service Discovery within an ECS cloud isn't available OOTB. This is a big one if you're trying to host microservices. They suggest using a dedicated service ([Weave](https://www.weave.works/guides/service-discovery-and-load-balancing-with-weave-on-amazon-ecs-2/), etc.) or rolling your own using Route53 and a [go script](https://github.com/awslabs/service-discovery-ecs-dns). This is in sharp contrast to K8s who has this OOTB and it's easy to use.
+  * Service Discovery within an ECS cloud isn't available OOTB. This is a big one if you're trying to host microservices. They suggest using a dedicated service ([Weave](https://www.weave.works/guides/service-discovery-and-load-balancing-with-weave-on-amazon-ecs-2/), etc.) or rolling your own using Route53 and a [go script](https://github.com/awslabs/service-discovery-ecs-dns). This is in sharp contrast to K8s who has this OOTB and it's easy to use. Instead I used an internal ELB for the service to work against and then passed the ELB's DNS name into the [task defintion via env variable](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_parameters.html#container_definitions)
 
 ## Notes
 * ECS requires lots of attributes for task definitions (their version of kubernetes' controllers) - a little bit of research gives a lot of power though
