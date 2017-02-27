@@ -52,6 +52,13 @@ The primary goal is exploration and refreshing myself on technologies I haven't 
 
 
 ### Scalability
-If one wanted to have 10,000's of games of hangman operating concurrently (who doesn't?) containerized ECS could get you there quickly. *Testing info goes here*
+If one wanted to have 10,000's of games of hangman operating concurrently (who doesn't?) containerized ECS could get you there quickly.
+
+Here's a test from loader showing 10,000 concurrent requests per second over a one minute period.
+<div style="width: 600px;">
+<iframe width='600' height='300' frameborder='0' src='//share.loader.io/reports/949459eb03a25209e693ff2037b374ce/widget/results/0ad435385b3dede91dc6cded79192b9e'></iframe>
+<div style="width: 100%; text-align: right;">
+<a href="http://loader.io/reports/949459eb03a25209e693ff2037b374ce/results/0ad435385b3dede91dc6cded79192b9e" target="_blank" style="padding: 0 10px 10px 0; font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; font-size: 14px;">View on loader.io</a>
+</div></div>
 
 ### Using Postman and API documentation
